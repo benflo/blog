@@ -12,9 +12,18 @@
 */
 
 
+Route::get('/', function () {
+    $articles=App\Articles::all();
+
+    return view('articles', [
+        'articles'=> $articles,
+        ])
+
+
+    ;
+
+});
 Route::get('/article','ArticlesController@afficheArticles');
-
-
 
 
 
