@@ -86,12 +86,20 @@
                 <h2>{{$article->titre}}:</h2>
                 <p>{{$article->contenu}}</p>
                 <p>{{$article->created_at}}</p>
-              <input type="checkbox" name="macase" value="poster">  Cocher la case pour poster l'article
+                @if(Route::has('login'))
+                    @auth
+                    <input type="checkbox" name="macase" value="poster">  Cocher la case pour poster l'article<br>
+                    <input value="modifier" type="submit" />
+                    <input value="supprimer" type="submit"/>
+
+                    @endauth
+
+                @endif
             </li>
         @endforeach
             <form method="post" >
                 commentaire: <textarea name="commentaire" id="commentaire"></textarea>
-                <button value="valider">valider</button>
+                <input value="valider" type="submit"/>
             </form>
     </ul>
 </form>

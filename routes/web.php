@@ -27,8 +27,6 @@ Route::get('/article','ArticlesController@afficheArticles');
 
 
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

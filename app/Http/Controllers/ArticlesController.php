@@ -7,15 +7,15 @@ use App\AjoutArticles;
 use App\Articles;
 use App\Commentaire;
 use illuminate\http\request;
-
+use App\User;
 
 class ArticlesController extends Controller
 {
     public function afficheArticles(){
             $articles=Articles::all();
-            $commentaitres=Commentaire::all();
+            $commentaires=Commentaire::all();
 
-            return view('articles')->with('articles',$articles)->with('commentaire',$commentaitres);
+            return view('articles')->with('articles',$articles)->with('commentaire',$commentaires);
 
 
 
@@ -35,9 +35,7 @@ class ArticlesController extends Controller
         $articles=new Articles([
             'titre'=> $request->input('titre'),
             'contenu'=>$request->input('contenu'),
-
-
-            'user_id'=>Auth::user(),
+            'user_id'=>Auth::user()->getAuthIdentifier(),
         ]);
         $articles->save();
 
@@ -46,7 +44,7 @@ class ArticlesController extends Controller
         $articles=new Articles([
             'titre'=>$request->get('titre'),
             'contenu'=>$request->get('contenu'),
-            'user_id'=>Auth::user(),
+            'user_id'=>Auth::user()->getAuthIdentifier(),
         ]);
         $articles->save();
     }
