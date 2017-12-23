@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use App\AjoutArticles;
 use App\Articles;
-use App\Commentaire;
+use App\Commentaires;
 use illuminate\http\request;
 use App\User;
 
@@ -13,9 +13,9 @@ class ArticlesController extends Controller
 {
     public function afficheArticles(){
             $articles=Articles::all();
-            $commentaires=Commentaire::all();
+            $commentaires=Commentaires::all();
 
-            return view('articles')->with('articles',$articles)->with('commentaire',$commentaires);
+            return view('articles')->with('articles',$articles)->with( 'commentaires',$commentaires);
 
 
 
@@ -35,6 +35,7 @@ class ArticlesController extends Controller
         $articles=new Articles([
             'titre'=> $request->input('titre'),
             'contenu'=>$request->input('contenu'),
+            'auteur'=>Auth::user()->getAuthIdentifierName(),
             'user_id'=>Auth::user()->getAuthIdentifier(),
         ]);
         $articles->save();
@@ -47,6 +48,7 @@ class ArticlesController extends Controller
             'user_id'=>Auth::user()->getAuthIdentifier(),
         ]);
         $articles->save();
+        return redirect()->route('articles')->with('success','L\'article a été créé');
     }
     public function delete(){
         $article=App\Articles::find(1);

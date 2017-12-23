@@ -83,20 +83,47 @@
                 <div class="title m-b-md">
                     blog
                 </div>
-                <h1>Article</h1>
-                <div class="Article">
+                <link href ="./css/custom.css" rel="stylesheet" type="text/css">
+
+                <h2>Derniers Article</h2>
+                <div class="post-container2">
+                    @foreach($articles as $article)
+                        <h2>{{$article->titre}}:</h2>
+                        <p>{{$article->contenu}}</p>
+                        <p>{{$article->created_at}}</p>
+                        <p>{{$article->auteur}}</p>
 
 
-                            <li>
 
-                                <h2>{{$article->titre}}:</h2>
-                                <p>{{$article->contenu}}</p>
-                                <p>{{$article->created_at}}</p>
-                            </li>
-                    <p>
+
+                    @endforeach
 
 
                 </div>
+                <h3>commentaires</h3>
+                <div class="post-container">
+                @foreach($commentaires as $commentaire)
+                <p>{{$commentaire->commentaire}}</p>
+                <p>{{$commentaire->auteur}}</p>
+                <p>{{$commentaire->created_at}}</p>
+                    @endforeach
+                    @if(Route::has('login'))
+                        @auth
+
+                        <input value="modifier" type="submit" />
+                        <input value="supprimer" type="submit"/><br>
+
+
+                        @endauth
+
+                    @endif
+                </div>
+
+                <form method="post" >
+                    {{csrf_field()}}
+                    commentaire: <textarea name="commentaire" id="commentaire"></textarea>
+                    <input value="valider" type="submit"/>
+                </form>
                 </div>
 
             </div>

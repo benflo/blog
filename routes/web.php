@@ -12,17 +12,9 @@
 */
 
 
-Route::get('/', function () {
-    $articles=App\Articles::all();
-
-    return view('articles', [
-        'articles'=> $articles,
-        ])
-
-
-    ;
-
-});
+Route::get('/','WelcomeController@index');
+Route::post('/','WelcomeController@commentaire');
+//Route::get('/', 'WelcomeController@Commentaire');
 Route::get('/article','ArticlesController@afficheArticles');
 
 

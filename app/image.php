@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commentaire extends Model
+class image extends Model
 {
-    protected $table='commentaires';
+    protected $table='image';
     protected $fillable = [
-        'commentaire'
+        'Nom','image','article_id', 'user_id'
     ];
     public function user()
     {
         return $this->belongsTo('App\User');
     }
+
 }
