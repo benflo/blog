@@ -12,11 +12,14 @@
 */
 
 
-Route::get('/','WelcomeController@index');
+Route::get('/','WelcomeController@index')->name('welcome');
 Route::post('/','WelcomeController@commentaire');
 //Route::get('/', 'WelcomeController@Commentaire');
 Route::get('/article','ArticlesController@afficheArticles');
-
+Route::get('/commentaire','CommentairesController@update')->name('commentaire');
+Route::put('/commentaire','CommentairesController@update')->name('commentaire');
+Route::get('/images', 'ImagesController@index')->name('images');
+//Route::get('/','CommentairesController@destroy');
 
 
 Auth::routes();
@@ -24,5 +27,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ajoutarticle','AjoutArticlesController@create')->name('ajoutarticle');
 Route::post('/ajoutarticle','ArticlesController@store');
-Route::post('/commentaire','CommentaireController@store');
+Route::post('/commentaire','CommentairesController@store');
+
+/**
+ * Ajax call
+ */
+Route::post('ajoutarticle/ajax','ArticlesController@store');
 //Route::resource('Articles', 'ArticlesController');

@@ -13,26 +13,26 @@ class CommentairesController extends Controller
 
     public function store(Request $request){
         $commentaires=new Commentaires([
-            //'auteur'=>Auth::user()->getAuthIdentifierName(),
+            'auteur'=>Auth::user()->getAuthIdentifierName(),
             'commentaire'=>$request->input('commentaire'),
             'article_id'=>Articles::with('id'),
         ]);
         $commentaires->save();
 
     }
-    public function update(Request $request){
-        $commentaires=new Commentaires([
+    public function update(){
 
-            'commentaire'=>$request->get('commentaire'),
-            'user_id'=>Auth::user()->getAuthIdentifier(),
-            'article_id'=>Articles::with('id'),
-        ]);
-        $commentaires->save();
+        $commentaires=Commentaires::all();
+
+        return view('commentaire',compact('commentaires'));
     }
-    public function delete(){
-    $commentaires=App\Commentaires::find(1);
 
-    $commentaires->delete();
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+   public function destroy($id){
+    $this->destroy($id);
 
+    ;
     }
 }

@@ -14,9 +14,9 @@ class CreateImageTable extends Migration
      */
     public function up()
     {
-        Schema::create('image', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('image');
+            $table->string('images');
             $table->integer('article_id')->reference('id')->on('articles');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateImageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image');
+        Schema::dropIfExists('images');
     }
 }

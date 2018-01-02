@@ -92,32 +92,40 @@
                         <p>{{$article->contenu}}</p>
                         <p>{{$article->created_at}}</p>
                         <p>{{$article->auteur}}</p>
+                        @if(Route::has('login'))
+                            @auth
+                        <input type="checkbox" name="macase" value="poster">  Cocher la case pour poster l'article
 
+                            @endauth
 
-
+                        @endif
 
                     @endforeach
 
 
                 </div>
                 <h3>commentaires</h3>
-                <div class="post-container">
+
                 @foreach($commentaires as $commentaire)
+                    <div class="post-container">
                 <p>{{$commentaire->commentaire}}</p>
                 <p>{{$commentaire->auteur}}</p>
                 <p>{{$commentaire->created_at}}</p>
+
+                        @if(Route::has('login'))
+                            @auth
+
+                            <a href="{{url ('/commentaire')}}">Modifier</a>
+                            <a href="{{url ('/')}}">Supprimer</a><br>
+
+
+                            @endauth
+
+                        @endif
+                    </div>
                     @endforeach
-                    @if(Route::has('login'))
-                        @auth
-
-                        <input value="modifier" type="submit" />
-                        <input value="supprimer" type="submit"/><br>
 
 
-                        @endauth
-
-                    @endif
-                </div>
 
                 <form method="post" >
                     {{csrf_field()}}
@@ -125,6 +133,7 @@
                     <input value="valider" type="submit"/>
                 </form>
                 </div>
+
 
             </div>
     </body>
