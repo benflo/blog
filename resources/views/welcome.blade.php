@@ -83,7 +83,9 @@
                 <div class="title m-b-md">
                     blog
                 </div>
+{{--
                 <link href ="./css/custom.css" rel="stylesheet" type="text/css">
+--}}
 
                 <h2>Derniers Article</h2>
                 <div class="post-container2">
@@ -94,7 +96,7 @@
                         <p>{{$article->auteur}}</p>
                         @if(Route::has('login'))
                             @auth
-                        <input type="checkbox" name="macase" value="poster">  Cocher la case pour poster l'article
+                        <input type="checkbox" name="checkbox" class="" value="false">  Cocher la case pour poster l'article
 
                             @endauth
 
@@ -116,7 +118,7 @@
                             @auth
 
                             <a href="{{url ('/commentaire')}}">Modifier</a>
-                            <a href="{{url ('/')}}">Supprimer</a><br>
+                            <a href="{{url ('/welcome')}}">Supprimer</a><br>
 
 
                             @endauth

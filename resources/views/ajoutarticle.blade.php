@@ -11,9 +11,9 @@
                     <form method="post">
                         {{ csrf_field() }}
                         <label for="nom"> Titre : </label></br></br>
-                        <p contenteditable="true" class="titre"> "ceci est un titre"</p></br></br>
+                        <input contenteditable="true" class="titre" value='"ceci est un titre"'></br></br>
                         <label for="nom"> Contenu : </label></br></br>
-                        <p contenteditable="true" class="corps">"ceci est le corp"</p></br></br>
+                        <textarea contenteditable="true" class="corps">"ceci est le corp"</textarea></br></br>
                         <button class="post-submit" >valider </button>
 
                     </form>

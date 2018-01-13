@@ -6,15 +6,21 @@ use Illuminate\Http\Request;
 use App\Articles;
 use App\Commentaires;
 use  Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
-    public function index(){
-        $articles=Articles::all();
-        $commentaires=Commentaires::all();
+    public function index()
+    {
+        $articles = Articles::all();
+        $commentaires = Commentaires::all();
+        $lastArticle = DB::table('articles')->latest()->first();
 
-        return view('welcome', compact('articles'),compact('commentaires'));
+        return view('front.index', [
+            'articles' => $articles,
+            'commentaires' => $commentaires,
+            'lastArticle' => $lastArticle
+        ]);
     }
 
     public function commentaire(request $request){

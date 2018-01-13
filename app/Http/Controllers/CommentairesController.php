@@ -31,8 +31,8 @@ class CommentairesController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
    public function destroy($id){
-    $this->destroy($id);
+       $commentaires = Commentaires::find($id);
 
-    ;
+       $commentaires->delete();
     }
 }

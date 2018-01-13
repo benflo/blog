@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Articles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $authId = Auth::id();
+        $articles = Articles::where('user_id', $authId)->get();
+
+        return view('admin.index', compact('articles'));
     }
 
 }

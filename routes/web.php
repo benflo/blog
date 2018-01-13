@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 
 Route::get('/','WelcomeController@index')->name('welcome');
 Route::post('/','WelcomeController@commentaire');
@@ -19,16 +19,16 @@ Route::get('/article','ArticlesController@afficheArticles');
 Route::get('/commentaire','CommentairesController@update')->name('commentaire');
 Route::put('/commentaire','CommentairesController@update')->name('commentaire');
 Route::get('/images', 'ImagesController@index')->name('images');
-//Route::get('/','CommentairesController@destroy');
+Route::get('/commentaire/{id}','CommentairesController@destroy')->name('CommentaireDelete');
 
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/ajoutarticle','AjoutArticlesController@create')->name('ajoutarticle');
+Route::get('/admin', 'HomeController@index')->name('admin');
+// articles
+Route::get('/ajoutarticle','ArticlesController@create')->name('ajoutarticle');
 Route::post('/ajoutarticle','ArticlesController@store');
 Route::post('/commentaire','CommentairesController@store');
-
+Route::get('/article/{id}','ArticlesController@show')->name('article.show');
 /**
  * Ajax call
  */
