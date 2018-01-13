@@ -12,17 +12,24 @@ use App\User;
 class ArticlesController extends Controller
 {
     public function create(){
-        return view('ajoutarticle');
+        return view('admin.articles.add');
     }
+
     public function store(Request $request){
-        $articles=new Articles([
-            'titre'=> $request->input('titre'),
-            'contenu'=>$request->input('contenu'),
-            'auteur'=>Auth::user()->getAuthIdentifierName(),
-            'user_id'=>Auth::user()->getAuthIdentifier(),
+
+        $titre = $request->titre;
+        $contenu = $request->contenu;
+
+        $articles = new Articles([
+            'titre' => $titre,
+            'contenu' => $contenu,
+            'user_id' => Auth::user()->getAuthIdentifier(),
         ]);
 
         $articles->save();
+
+        echo json_encode($articles);
+        die;
     }
 
     public function afficheArticles(){
@@ -59,9 +66,29 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function delete(){
-        $article=App\Articles::find(1);
+    public function activation(Request $request, $id)
+    {
+        $active = $request->active;
+        $article = Articles::find($id);
+        if ($active === null){
+            $active = 0;
+        } else {
+            $active = 1;
+        }
+        $article->active = $active;
+
+        $article->save();
+
+        return redirect()->route('admin');
+    }
+
+    public function delete($id){
+        $article=Articles::find($id);
+
         $article->delete();
+
+        return redirect()->route('admin');
+
     }
 
 

@@ -8,15 +8,12 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Article</div>
-                    <form method="post">
-                        {{ csrf_field() }}
                         <label for="nom"> Titre : </label></br></br>
-                        <input contenteditable="true" class="titre" value='"ceci est un titre"'></br></br>
+                        <p contenteditable="true" class="article-titre">ceci est un titre"</p><br>
                         <label for="nom"> Contenu : </label></br></br>
-                        <textarea contenteditable="true" class="corps">"ceci est le corp"</textarea></br></br>
-                        <button class="post-submit" >valider </button>
-
-                    </form>
+                        <textarea contenteditable="true" class="article-corps">"ceci est le corps"</textarea></br></br>
+                        <button class="article-add" >valider </button>
+                    </div>
                 </div>
             </div>
         </div>

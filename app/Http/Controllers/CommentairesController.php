@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use App\Commentaires;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,11 @@ use App\Articles;
 
 class CommentairesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function store(Request $request){
         $commentaires=new Commentaires([
@@ -20,19 +26,28 @@ class CommentairesController extends Controller
         $commentaires->save();
 
     }
-    public function update(){
+    public function show(Request $request){
+        $id = $request->id;
+        $commentaire = Commentaires::find($id);
 
-        $commentaires=Commentaires::all();
-
-        return view('commentaire',compact('commentaires'));
+        return view('admin.commentaires.edit', compact('commentaire'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-   public function destroy($id){
+    public function update(Request $request)
+    {
+        $id = $request->id;
+        $message = Commentaires::find($id);
+        $message->commentaire = $request->input('commentaire');
+
+        $message->save();
+
+        return redirect()->route('commentaire.edit', ['id' => $id]);
+    }
+
+   public function delete($id){
        $commentaires = Commentaires::find($id);
-
        $commentaires->delete();
-    }
+
+       return redirect()->route('admin');
+   }
 }

@@ -14,23 +14,27 @@ Auth::routes();
 
 Route::get('/','WelcomeController@index')->name('welcome');
 Route::post('/','WelcomeController@commentaire');
-//Route::get('/', 'WelcomeController@Commentaire');
+
 Route::get('/article','ArticlesController@afficheArticles');
-Route::get('/commentaire','CommentairesController@update')->name('commentaire');
-Route::put('/commentaire','CommentairesController@update')->name('commentaire');
 Route::get('/images', 'ImagesController@index')->name('images');
-Route::get('/commentaire/{id}','CommentairesController@destroy')->name('CommentaireDelete');
 
 
-
-Route::get('/admin', 'HomeController@index')->name('admin');
 // articles
-Route::get('/ajoutarticle','ArticlesController@create')->name('ajoutarticle');
+Route::get('/ajoutarticle','ArticlesController@create')->name('article.add');
 Route::post('/ajoutarticle','ArticlesController@store');
 Route::post('/commentaire','CommentairesController@store');
-Route::get('/article/{id}','ArticlesController@show')->name('article.show');
+Route::get('/admin/article/delete/{id}','ArticlesController@delete')->name('article.delete');
+Route::get('/admin/article/{id}','ArticlesController@show')->name('article.show');
+Route::post('/admin/article/activation/{id}','ArticlesController@activation')->name('article.activation');
+
+// admin
+Route::get('/admin', 'HomeController@index')->name('admin');
+// commentaires
+Route::get('/admin/commentaire/{id}','CommentairesController@show')->name('commentaire.edit');
+Route::post('/admin/commentaire/{id}','CommentairesController@update')->name('commentaire.edit');
+Route::get('/admin/commentaire/delete/{id}','CommentairesController@delete')->name('commentaire.delete');
+
 /**
  * Ajax call
  */
 Route::post('ajoutarticle/ajax','ArticlesController@store');
-//Route::resource('Articles', 'ArticlesController');

@@ -83,9 +83,6 @@
                 <div class="title m-b-md">
                     blog
                 </div>
-{{--
-                <link href ="./css/custom.css" rel="stylesheet" type="text/css">
---}}
 
                 <h2>Derniers Article</h2>
                 <div class="post-container2">
@@ -94,16 +91,7 @@
                         <p>{{$article->contenu}}</p>
                         <p>{{$article->created_at}}</p>
                         <p>{{$article->auteur}}</p>
-                        @if(Route::has('login'))
-                            @auth
-                        <input type="checkbox" name="checkbox" class="" value="false">  Cocher la case pour poster l'article
-
-                            @endauth
-
-                        @endif
-
                     @endforeach
-
 
                 </div>
                 <h3>commentaires</h3>

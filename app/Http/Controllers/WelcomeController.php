@@ -5,38 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Articles;
 use App\Commentaires;
-use  Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
     public function index()
     {
-        $articles = Articles::all();
-        $commentaires = Commentaires::all();
-        $lastArticle = DB::table('articles')->latest()->first();
+        $articles = Articles::where('active', 1)->get();
+        $lastArticle = DB::table('articles')->where('active', 1)->latest()->first();
+
+        $lastArticleComment = null;
+        if (isset($lastArticle)) {
+            $lastArticleComment = Commentaires::where('article_id', $lastArticle->id)->get();
+        }
 
         return view('front.index', [
             'articles' => $articles,
-            'commentaires' => $commentaires,
+            'commentaires' => $lastArticleComment,
             'lastArticle' => $lastArticle
         ]);
     }
 
     public function commentaire(request $request){
-
-        // si invité
-        if (Auth::user() === null) {
-            $user_id = null;
-        } else {
-            $user_id = Auth::user()->getAuthIdentifier();
-        }
+        $lastArticle = DB::table('articles')->latest()->first();
 
         $commentaires=new Commentaires([
             'commentaire'=> $request->input('commentaire'),
-            'user_id'=> $user_id,
+            'article_id'=> $lastArticle->id,
         ]);
-
         $commentaires->save();
 
         return redirect()->route('welcome');

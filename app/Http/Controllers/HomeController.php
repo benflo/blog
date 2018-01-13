@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Articles;
+use App\Commentaires;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Comment;
 
 class HomeController extends Controller
 {
@@ -27,8 +29,12 @@ class HomeController extends Controller
     {
         $authId = Auth::id();
         $articles = Articles::where('user_id', $authId)->get();
+        $lastCommentaires = Commentaires::orderBy('created_at', 'desc')->take(3)->get();
 
-        return view('admin.index', compact('articles'));
+        return view('admin.index', [
+            'articles'=> $articles,
+            'commentaires'=>$lastCommentaires,
+        ]);
     }
 
 }

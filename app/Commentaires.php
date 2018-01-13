@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Commentaires extends Model
 {
     protected $table='commentaires';
-    protected $fillable = ['commentaire'];
+    protected $fillable = ['commentaire', 'article_id', 'user_id'];
 
-    public function user()
+    public function article()
     {
         return $this->belongsTo('App\Articles');
     }

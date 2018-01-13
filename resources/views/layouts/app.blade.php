@@ -47,6 +47,7 @@
                             <li><a href="{{ route('register') }}">Enregistrement</a></li>
                         @else
                             <li><a href="{{ url('admin') }}">admin</a></li>
+                            <li><a href="{{ route('article.add') }}">ajout article</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,6 +83,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
