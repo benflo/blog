@@ -33,7 +33,7 @@ class CommentairesController extends Controller
         return view('admin.commentaires.edit', compact('commentaire'));
     }
 
-    public function update(Request $request)
+    public function edit(Request $request)
     {
         $id = $request->id;
         $message = Commentaires::find($id);

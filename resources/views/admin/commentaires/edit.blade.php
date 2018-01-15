@@ -5,8 +5,8 @@
 
     {!! Form::open() !!}
         {{ Form::token() }}
-        {{ Form::label('commentaire', 'Message :') }}
-        {{ Form::textarea('commentaire', $commentaire->commentaire) }}
+        {{ Form::label('commentaire', 'Message :') }}<br>
+        {{ Form::textarea('commentaire', $commentaire->commentaire) }}<br>
         {{ Form::submit() }}
     {!! Form::close() !!}
 @endsection

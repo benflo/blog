@@ -46,14 +46,23 @@ class ArticlesController extends Controller
 
         return view('article')->with('Articles',$articles)->with('Title',$titre);
     }
-    public function update(Request $request){
-        $articles=new Articles([
-            'titre'=>$request->get('titre'),
-            'contenu'=>$request->get('contenu'),
-            'user_id'=>Auth::user()->getAuthIdentifier(),
-        ]);
+
+    public function editView(Request $request){
+        $id = $request->id;
+        $articles = Articles::find($id);
+
+        return view('admin.articles.edit', compact('articles'));
+    }
+
+    public function edit(Request $request)
+    {
+        $id = $request->id;
+        $articles = Articles::find($id);
+        $articles->titre = $request->input('titre');
+        $articles->contenu = $request->input('contenu');
+
         $articles->save();
-        return redirect()->route('articles')->with('success','L\'article a été créé');
+        return redirect()->route('admin')->with('success','L\'article a été modifié avec succés');
     }
 
     public function show(Request $request){

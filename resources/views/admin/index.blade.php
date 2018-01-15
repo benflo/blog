@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     @foreach($articles as $article)
                         <li>
-                            {{$article->contenu}} - {{$article->created_at}}
+                            {{$article->titre}} - {{$article->created_at}}
                             {!! Form::open(['route' => ['article.activation', $article->id]]) !!}
                                 {{ Form::token() }}
                                 {{ Form::label('active', 'Publié : ') }}
@@ -19,6 +19,7 @@
                                 {{ Form::submit() }}
                             {!! Form::close() !!}
                             <a href="{{ route('article.delete', ['id' => $article->id]) }}">supprimer</a>
+                            <a href="{{ route('article.edit', ['id' => $article->id]) }}">modifier</a>
                         </li>
                     @endforeach
                 </div>

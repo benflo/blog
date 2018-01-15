@@ -24,6 +24,8 @@ Route::get('/ajoutarticle','ArticlesController@create')->name('article.add');
 Route::post('/ajoutarticle','ArticlesController@store');
 Route::post('/commentaire','CommentairesController@store');
 Route::get('/admin/article/delete/{id}','ArticlesController@delete')->name('article.delete');
+Route::get('/admin/article/edit/{id}', 'ArticlesController@editView')->name('article.edit');
+Route::post('/admin/article/edit/{id}', 'ArticlesController@edit')->name('article.edit');
 Route::get('/admin/article/{id}','ArticlesController@show')->name('article.show');
 Route::post('/admin/article/activation/{id}','ArticlesController@activation')->name('article.activation');
 
