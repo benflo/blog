@@ -16,7 +16,6 @@ class ArticlesController extends Controller
     }
 
     public function store(Request $request){
-
         $titre = $request->titre;
         $contenu = $request->contenu;
 

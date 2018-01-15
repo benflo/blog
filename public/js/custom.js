@@ -10,14 +10,16 @@ $('.article-add').on('click', function (e) {
     });
 
     $.ajax({
-        url: '/ajoutarticle/ajax',
+        url: 'ajoutarticle/ajax',
         type: 'POST',
         data: {
             titre: titre,
             contenu: contenu
         },
         success: function (data) {
-            //
+            $('.article-titre').text('"ceci est un titre"');
+            $('.article-corps').val('"ceci est le corps"');
+            alert('Votre article a été créé avec succès!');
         }
     });
 });

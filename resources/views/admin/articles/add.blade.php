@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Article</div>
                         <label for="nom"> Titre : </label></br></br>
-                        <p contenteditable="true" class="article-titre">ceci est un titre"</p><br>
+                        <p contenteditable="true" class="article-titre">"ceci est un titre"</p><br>
                         <label for="nom"> Contenu : </label></br></br>
                         <textarea contenteditable="true" class="article-corps">"ceci est le corps"</textarea></br></br>
                         <button class="article-add" >valider </button>
